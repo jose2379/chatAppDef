@@ -1,0 +1,13 @@
+<div class="container">
+<div class="jumbotron">
+<h1>Board</h1>
+  <pre>hola {{ listaMensajes }}</pre>
+<ul>
+  <li *ngFor="let mensaje of listaMensajes; let i = index" [ngClass]="{'propio': mensaje.messageSend.userName == currentUser, 'ajeno': mensaje.messageSend.userName != currentUser}">
+    <p *ngIf="mensaje.messageSend.userName == currentUser">Yo</p>
+    <p *ngIf="mensaje.messageSend.userName != currentUser">Mensaje de: {{ mensaje.messageSend.userName }}</p>
+    <p>{{ mensaje.messageSendcontentMensaje }}</p>
+  </li>
+</ul>
+</div>
+</div>
