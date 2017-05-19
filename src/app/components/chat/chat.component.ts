@@ -3,6 +3,7 @@ import {Store} from "@ngrx/store";
 import {State} from "../../stage-management/state/main.state";
 import {ActionsMessage} from "../../stage-management/actions/message.actions";
 import {Mensaje} from "../mensaje.interface";
+import {MessagesService} from "../../services/messages.service";
 
 @Component({
   selector: 'app-chat',
@@ -14,8 +15,11 @@ export class ChatComponent implements OnInit {
   mensaje: string;
   userName:string;
 
-  constructor(private store:Store<State>) {
-    store.select('messageReducer')
+  // constructor(private store:Store<State>) {
+  //   store.select('messageReducer')
+  // }
+  constructor(private uS: MessagesService) {
+    // store.select('messageReducer')
   }
 
   ngOnInit() {
@@ -30,11 +34,13 @@ export class ChatComponent implements OnInit {
       console.log('Debes añadir un Mensaje')
     } else {
       let messageSend:Mensaje = {
-        userName: this.userName,
-        contentMensaje: this.mensaje
+        username: this.userName,
+        message: this.mensaje
       };
 
-      this.store.dispatch({type: ActionsMessage.INSERT_MESSAGE, payload: { message: { messageSend }}});
+      this.uS.pushMessage(messageSend);
+
+      // this.store.dispatch({type: ActionsMessage.INSERT_MESSAGE, payload: { message: { messageSend }}});
       this.mensaje = '';
       this.userName = '';
     }

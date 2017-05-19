@@ -10,6 +10,9 @@ import { UsersComponent } from './components/users/users.component';
 import {StoreModule} from "@ngrx/store";
 import {messageReducer} from "./stage-management/reducers/message.reducer";
 import {userReducer} from "./stage-management/reducers/user.reducer";
+import {AngularFireModule} from "angularfire2";
+import {environment} from "../environments/environment";
+import {MessagesService} from "./services/messages.service";
 
 @NgModule({
   declarations: [
@@ -22,9 +25,10 @@ import {userReducer} from "./stage-management/reducers/user.reducer";
     BrowserModule,
     FormsModule,
     HttpModule,
-    StoreModule.provideStore({messageReducer, userReducer})
+    StoreModule.provideStore({messageReducer, userReducer}),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

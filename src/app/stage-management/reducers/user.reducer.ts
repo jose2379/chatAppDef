@@ -4,7 +4,7 @@ import {initialStage, State} from "../state/main.state";
 import {ActionsUser} from "../actions/user.actions";
 
 export const userReducer: ActionReducer<State> = (state = initialStage, action: Action) => {
-  console.log("hola");
+  // console.log("hola");
   switch (action.type) {
     case ActionsUser.USER_LIST:{
       let arrTemp = state.userList;
